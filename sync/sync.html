@@ -1,0 +1,84 @@
+<audio id="audio" controls>
+  <source src="sync\Alleh & Yorghaki - tranqui te puedes enamorar OFFICIAL VERSION.mp3" type="audio/mpeg" />
+  Tu navegador no soporta audio.
+</audio>
+
+<pre id="output"></pre>
+
+<script>
+  const audio = document.getElementById("audio");
+  const output = document.getElementById("output");
+
+  // pega tu letra aquí, línea por línea
+  const letra = [
+    "Ay, únete a mi' plane",
+    "Imposible que no pase la misión",
+    "¿Cómo hago que no ganes?",
+    "Si me hablas y me baja la presión",
+    "Ay, únete a mis planes",
+    "Imposible que no gane la misión",
+    "¿Dónde hago que me ames?",
+    "Y nos llevemos por la ley de atracción",
+    "¡Uh!, si me dejas yo te puedo enseñar",
+    "Lo rico que se siente caminar",
+    "Pegaítos en la orilla del mar",
+    "Mami, tan solo de imaginarlo",
+    "Si me dejas yo te paso a buscar",
+    "Pa pasar la noche fenomenal",
+    "Si ya se te olvidó cómo es amar",
+    "Tranquila, te puedes enamorar",
+    "No me quites la fuerza, dame más",
+    "Si sabes que te gusto, admítelo",
+    "Nos parecemos mucho y además",
+    "Tenemo los mismo' gusto'",
+    "Nada con besarte se compara",
+    "Tenerte cara a cara, mami, hablando claro",
+    "Baby, otra como tú no hay, ¡ay, ay, ay, ay!",
+    "Hacías como si nada",
+    "Si te hablaban de mí",
+    "Volteabas la mirada, si me veías por ahí",
+    "Es tan como imaginaba",
+    "Ahora te tengo aquí",
+    "La ley te trajo hasta mí",
+    "Ay, solo dime que sí",
+    "¡Uh!, si me dejas yo te puedo enseñar",
+    "Lo rico que se siente caminar",
+    "Pegaítos en la orilla del mar",
+    "Mami, tan solo de imaginarlo",
+    "Si me dejas yo te paso a buscar",
+    "Pa pasar la noche fenomenal",
+    "Si ya se te olvidó como es amar",
+    "Ay, dime si esto que sentimos es tan fuerte",
+    "Baby, yo no quiero que te vayas",
+    "Mira que hoy amanecí con suerte",
+    "Como pa pasarnos de la raya",
+    "Es que contigo me siento más fuerte",
+    "Como pa ganar una batalla",
+    "No hablemos mucho que no' sale mejor",
+    "Íbamos sin el compromiso y habló el corazón",
+    "Besando sin pedir permiso, pidiendo perdón",
+    "Siempre llegando sin aviso",
+    "Pero en el momento preciso",
+    "Íbamos sin el compromiso y habló el corazón (all right)",
+    "Besando sin pedir permiso, pidiendo perdón (all right)",
+    "Siempre llegando sin aviso (all right)",
+    "Pero en el momento preciso"
+  ];
+
+  let index = 0;
+  let lyricsData = [];
+
+  // Cuando presionas la barra espaciadora, guarda el tiempo actual
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Space") {
+      e.preventDefault(); // evita pausar el audio
+      if (index < letra.length) {
+        const tiempo = Math.floor(audio.currentTime);
+        lyricsData.push({ text: letra[index], time: tiempo });
+        index++;
+
+        output.textContent = JSON.stringify(lyricsData, null, 2);
+      }
+    }
+  });
+</script>

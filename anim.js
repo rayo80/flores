@@ -2,57 +2,53 @@
 var audio = document.querySelector("audio");
 var lyrics = document.querySelector("#lyrics");
 
-// Array de objetos que contiene cada línea y su tiempo de aparición en segundos
 var lyricsData = [
-  { text: "At the time", time: 15 },
-  { text: "The whisper of birds", time: 18 },
-  { text: "Lonely before the sun cried", time: 27 },
-  { text: "Fell from the sky", time: 32 },
-  { text: "Like water drops", time: 33 },
-  { text: "Where I'm now? I don't know why", time: 41 },
-  { text: "Nice butterflies in my hands", time: 47 },
-  { text: "Too much light for twilight", time: 54 },
-  { text: "In the mood for the flowers love", time: 59 },
-  { text: "That vision", time: 67 },
-  { text: "Really strong, blew my mind", time: 72 },
-  { text: "Silence Let me see what it was", time: 78 },
-  { text: "I only want to live in clouds", time: 83 },
-  { text: "Where I'm now? I don't know why", time: 91 },
-  { text: "Nice butterflies in my hands", time: 97 },
-  { text: "Too much light for twilight", time: 104 },
-  { text: "In the mood for the flowers love", time: 108 },
-  { text: "At the time", time: 144 },
-  { text: "The whisper of birds", time: 148 },
-  { text: "Lonely before the sun cried", time: 153 },
-  { text: "Fell from the sky", time: 158 },
-  { text: "Like water drops", time: 164 },
-  { text: "Where I'm now? I don't know why", time: 169 },
-  { text: "Nice butterflies in my hands", time: 176 },
-  { text: "Too much light for twilight", time: 183 },
-  { text: "In the mood for the flowers", time: 188 },
-  { text: "Love.", time: 140 },
+  // Intro
+  { text: "Ay, únete a mi' plane", time: 8 },
+  { text: "Imposible que no pase la misión", time: 11 },
+  { text: "¿Cómo hago que no ganes?", time: 13 },
+  { text: "Si me hablas y me baja la presión", time: 16 },
+
+  { text: "Ay, únete a mis planes", time: 18 },
+  { text: "Imposible que no gane la misión", time: 20 },
+  { text: "¿Dónde hago que me ames?", time: 23 },
+  { text: "Y nos llevemos por la ley de atracción", time: 25 },
+
+  // Estribillo rápido
+  { text: "¡Uh!, si me dejas yo te puedo enseñar", time: 29 },
+  { text: "Lo rico que se siente caminar", time: 32 },
+  { text: "Pegaítos en la orilla del mar", time: 34 },
+  { text: "Mami, tan solo de imaginarlo", time: 37 },
+
+  { text: "Si me dejas yo te paso a buscar", time: 40 },
+  { text: "Pa pasar la noche fenomenal", time: 41 },
+  { text: "Si ya se te olvidó cómo es amar", time: 44 },
+  { text: "Tranquila, te puedes enamorar", time: 46 },
+
+  { text: "No me quites la fuerza, dame más", time: 48 },
+  { text: "Si sabes que te gusto, admítelo", time: 50 },
+  { text: "Nos parecemos mucho y además", time: 53 },
+  { text: "Tenemo los mismo' gusto'", time: 55 },
+  { text: "Nada con besarte se compara", time: 57},
+  { text: "Tenerte cara a cara, mami, hablando claro", time: 59 },
+  { text: "Baby, otra como tú no hay, ¡ay, ay, ay, ay!", time: 63 }
+
 ];
 
 // Animar las letras
 function updateLyrics() {
   var time = Math.floor(audio.currentTime);
-  var currentLine = lyricsData.find(
-    (line) => time >= line.time && time < line.time + 6
-  );
-
-  if (currentLine) {
-    // Calcula la opacidad basada en el tiempo en la línea actual
-    var fadeInDuration = 0.1; // Duración del efecto de aparición en segundos
-    var opacity = Math.min(1, (time - currentLine.time) / fadeInDuration);
-
-    // Aplica el efecto de aparición
-    lyrics.style.opacity = opacity;
-    lyrics.innerHTML = currentLine.text;
-  } else {
-    // Restablece la opacidad y el contenido si no hay una línea actual
-    lyrics.style.opacity = 0;
-    lyrics.innerHTML = "";
+  for (let i = 0; i < lyricsData.length; i++) {
+    let current = lyricsData[i];
+    let next = lyricsData[i + 1];
+    if (time >= current.time && (!next || time < next.time)) {
+      lyrics.innerHTML = current.text;
+      lyrics.style.opacity = 1;
+      return;
+    }
   }
+  lyrics.innerHTML = "";
+  lyrics.style.opacity = 0;
 }
 
 setInterval(updateLyrics, 1000);
@@ -69,4 +65,5 @@ function ocultarTitulo() {
 }
 
 // Llama a la función después de 216 segundos (216,000 milisegundos)
-setTimeout(ocultarTitulo, 216000);
+//setTimeout(ocultarTitulo, 216000);
+setTimeout(ocultarTitulo, 30000);
