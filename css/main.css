@@ -213,6 +213,54 @@ body {
   -webkit-animation: blooming-leaf-left var(--fl-speed) 1.9s backwards;
   animation: blooming-leaf-left var(--fl-speed) 1.9s backwards;
 }
+
+.floor-flowers {
+  position: absolute;
+  bottom: -10vmin;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  height: 20vmin;
+  z-index: 0;
+}
+
+.floor-flowers .flower {
+  bottom: 0;
+  transform-origin: bottom center;
+  animation: none; /* Quitamos la animación de balanceo para las del piso */
+}
+
+.floor-flowers .flower--4 {
+  left: -25%;
+  transform: scale(0.5) rotate(-10deg);
+}
+.floor-flowers .flower--5 {
+  left: 0;
+  transform: scale(0.6) rotate(5deg);
+}
+.floor-flowers .flower--6 {
+  left: 20%;
+  transform: scale(0.5) rotate(15deg);
+}
+.floor-flowers .flower--7 {
+  left: 40%;
+  transform: scale(0.6) rotate(-5deg);
+}
+.floor-flowers .flower--8 {
+  left: 60%;
+  transform: scale(0.5) rotate(8deg);
+}
+.floor-flowers .flower--9 {
+  left: 80%;
+  transform: scale(0.6) rotate(-12deg);
+}
+.floor-flowers .flower--10 {
+  left: 100%;
+  transform: scale(0.5) rotate(10deg);
+}
+.floor-flowers .flower .flower__line {
+  height: 25vmin;
+}
 .flower__leafs {
   position: relative;
   -webkit-animation: blooming-flower 2s backwards;
@@ -469,6 +517,9 @@ body {
   animation: light-ans 4s linear infinite backwards;
 }
 .flower__light:nth-child(odd) {
+  background-color: #f9fd25;
+}
+.floor-flowers .flower__light:nth-child(odd) {
   background-color: #23f0ff;
 }
 .flower__light--1 {
